@@ -21,10 +21,16 @@ Recent findings show that they, the heterogeneous systems, can achieve lower ene
 
 REFERENCES
 ----------
-[1]
-* New Scheduling Approach using Reinforcement Learning for Heterogeneous Distributed Systems.
-* Alexandru Iulian Orhean, Florin Pop, Ioan Raicu.
-* March 1, 2017
+[1] @article{orhean2018new,
+  title={New scheduling approach using reinforcement learning for heterogeneous distributed systems},
+  author={Orhean, Alexandru Iulian and Pop, Florin and Raicu, Ioan},
+  journal={Journal of Parallel and Distributed Computing},
+  volume={117},
+  pages={292--302},
+  year={2018},
+  publisher={Elsevier}
+}
+
 * Why this paper: So we get insights into how to use machine learning in achieving better scheduling policies.
 * Paper research problem: Heterogeneous systems task scheduling problem.
 * Paper goal: Determining a more efficient scheduling policy for heterogeneous systems.
@@ -32,20 +38,31 @@ REFERENCES
 * Conclusion: The paper proposed a platform of scheduling solutions as a service based on machine learning agents. 
 And found out that reinforcement learning has the limitation of with more nodes the system was incapable of learning optimal policy.
 
-[2] 
-* Genetic Algorithm approach to Operating system process scheduling problem.
-* Dr. Rakesh Kumar, Er. Rajiv Kumar, Er. Sanjeev Gill, Er. Ashwani Kaushik.
-* September 2010
+[2] @article{kumar2010genetic,
+  title={Genetic algorithm approach to operating system process scheduling problem},
+  author={Kumar, Rakesh and Kumar, Er Rajiv and Gill, Er Sanjeev and Kaushik, Er Ashwani},
+  journal={International journal of Engineering science and Technology},
+  volume={2},
+  number={9},
+  pages={4247--4252},
+  year={2010}
+}
+
 * Why this paper: Because we plan to use GA as one of the methods of optimization, which what the paper used,
 even though the paper target wasn't heterogeneous systems.
 * Paper research problem: General-purpose OS task scheduling problem.
 * Paper goal: Optimize scheduling parameters using GA.
 * Conclusion: GA’s can provide a highly flexible and user-friendly, near optimal solution to the general job sequencing problem.
 
-[3] 
-* Harnessing ISA Diversity: Design of a Heterogeneous-ISA Chip Multiprocessor
-* Ashish Venkat, Dean M. Tullsen
-* 14 June 2014
+[3] @inproceedings{venkat2014harnessing,
+  title={Harnessing ISA diversity: Design of a heterogeneous-ISA chip multiprocessor},
+  author={Venkat, Ashish and Tullsen, Dean M},
+  booktitle={2014 ACM/IEEE 41st International Symposium on Computer Architecture (ISCA)},
+  pages={121--132},
+  year={2014},
+  organization={IEEE}
+}
+
 * Why this paper: To understand heterogeneous systems structures.
 * Paper research problem: Which one is more power effective, heterogeneous or homogeneous systems?
 * Paper goal: prove heterogeneous systems are more power efficient
