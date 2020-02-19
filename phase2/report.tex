@@ -1,0 +1,70 @@
+\documentclass[twocolumn,11pt]{IEEEtran}
+\usepackage[verbose,expansion=alltext,stretch=50]{microtype}
+
+\title{Optimizing Scheduling Policies For Heterogeneous Distributed Systems}
+
+\author{
+   \begin{tabular}{c c c c}
+       Mahmoud Adas & Evram Yousef & Mohamed Shawky & Remonda Talaat\\
+       \texttt{\small{SEC 2, B.N 21}} & \texttt{\small{SEC 1, B.N 9}} & \texttt{\small{SEC 2, B.N 16}} & \texttt{\small{SEC 1, B.N 20}}
+   \end{tabular}%
+   \\
+   \texttt{\small{\{mido3ds, evramyousef, mohamedshawky911, remondatalaat21\}@gmail.com}}
+}%
+
+\markboth{Cairo Uni. CMP Dep. OS, Research Phase 2, \today}{Shell}
+
+\begin{document}
+    \maketitle
+
+    \begin{abstract}
+        This is phase 2 of the research project.
+        This paper describes the problem and explains why it is important.
+        It also cites the most 3 papers with their critiques.
+    \end{abstract}
+
+    \section{Introduction}
+    \IEEEPARstart{a}{} \emph{Heterogeneous System} is a system with multiple processors with some of them based on different instruction-set architecture (ISA) or micro-architecture. Usually, each processor excels at some aspect and performs poorly at another, and by combining them, we provide the best of each world. 
+    Heterogeneous systems are more complex than homogeneous ones, because processors have different architectures. That means they need more complex scheduling policies to utilize the different properties efficiently.
+    
+    \section{The Problem}
+    Our goal is to explore the possibility of providing more optimal scheduler policy for heterogeneous systems through 
+    heuristic parameter optimization methods like different machine learning and/or genetic algorithms.
+    We plan to build a simulation for some popular heterogeneous system, and integrate our optimization technique to 
+    find better policy for different scenarios.
+    
+    \section{Why is it important?}
+    Because heterogeneous systems are relatively new concept, they lack good support from OS developers, 
+    and thus their schedulers policies still need more optimizations. 
+    Recent findings show that they, the heterogeneous systems, can achieve lower energy delay product over homogeneous systems as much as 21\%-23\%. We assume that with more efficient scheduling they can achieve lower power consumption, and then they can become more economical.
+    
+    \section{References}
+    \subsection*{[1] Alexandru Iulian Orhean,  Florin  Pop, and Ioan Raicu. New scheduling approach using reinforcement learning for heterogeneous distributed systems. Journal of Parallel and Distributed Computing, 117:292–302, 2018.}
+    \begin{itemize}
+        \item Why this paper: So we get insights into how to use machine learning in achieving better scheduling policies.
+        \item Paper research problem: Heterogeneous systems task scheduling problem.
+        \item Paper goal: Determining a more efficient scheduling policy for heterogeneous systems.
+        \item Tools: BURLAP library, Java RMI API, remote allocated schedulers and WorkflowSim.
+        \item Conclusion: The paper proposed a platform of scheduling solutions as a service based on machine learning agents. 
+        And found out that reinforcement learning has the limitation of with more nodes the system was incapable of learning optimal policy.
+    \end{itemize}
+
+    \subsection*{[2] Rakesh Kumar, Er Rajiv Kumar, Er Sanjeev Gill, and Er Ashwani Kaushik. Genetic algorithm approach to operating system process scheduling problem. International journal of Engineering science and Technology, 2(9):4247–4252, 2010.}
+    \begin{itemize}
+        \item Why this paper: Because we plan to use GA as one of the methods of optimization, which what the paper used,
+        even though the paper's target wasn't heterogeneous systems.
+        \item Paper research problem: General-purpose OS task scheduling problem.
+        \item Paper goal: Optimize scheduling parameters using GA.
+        \item Conclusion: GA’s can provide a highly flexible and user-friendly, near optimal solution to the general job sequencing problem.
+    \end{itemize}
+
+    \subsection*{[3] Ashish Venkat and Dean M Tullsen. Harnessing isa diversity: Design  of  a  heterogeneous-isa  chip  multiprocessor. In 2014 ACM/IEEE 41st International Symposium on Computer Architecture(ISCA), pages 121–132. IEEE, 2014.}
+    \begin{itemize}
+        \item Why this paper: To understand heterogeneous systems structures.
+        \item Paper research problem: Which one is more power effective, heterogeneous or homogeneous systems?
+        \item Paper goal: prove heterogeneous systems are more power efficient
+        \item Conclusion: heterogeneous systems improves energy efficiency over the most efficient single-ISA design by 23\%.
+    \end{itemize} 
+\end{document}
+
+
