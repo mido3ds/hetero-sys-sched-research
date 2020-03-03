@@ -5,7 +5,6 @@
 \title{Optimizing Scheduling Policies For Heterogeneous Distributed Systems}
 
 \author{
-   
    \begin{tabular}{c| c| c| c}
        Mohamed Shawky & Remonda Talaat & Mahmoud Adas & Evram Youssef\\
        \texttt{\small{SEC 2, B.N 16}} & \texttt{\small{SEC 1, B.N 20}} & \texttt{\small{SEC 2, B.N 21}} & \texttt{\small{SEC 1, B.N 9}}
@@ -14,7 +13,7 @@
    \texttt{\small{\{mohamedshawky911, remondatalaat21, mido3ds, evramyousef\}@gmail.com}}
 }%
 
-\markboth{Cairo Uni. CMP Dep. | OS Research | Phase 3 | Team 10 | \today}{Shell}
+\markboth{Cairo Uni. CMP Dep. $|$ OS Research $|$ Phase 3 $|$ Team 10 $|$ \today}{Shell}
 
 \begin{document}
     \maketitle
@@ -25,42 +24,55 @@
     \end{abstract}
 
     \section{Introduction}
-    \IEEEPARstart{T}{he} scheduling and resource allocation policies for a distributed system are very hard to achieve. This becomes even harder when the system is heterogeneous, where you have different types of chips. The problem is classified as \emph{NP Hard} and it's an open problem for research. Recursive optimization is one practical solution to reach a sub-optimal or even an optimal policy. In this work we will discuss several possible solutions to the problem and introduce yet a new idea that could potentially work better.
+    \IEEEPARstart{T}{he} scheduling and resource allocation policies for a distributed system are very hard to achieve. This becomes even harder when the system is heterogeneous, where you have different architerctures of processors. The problem is classified as \emph{NP Hard} and it's \footnote{to the time of writing this paper, hopefully.} an open problem for research. In this work we will discuss several possible solutions to the problem and introduce yet a new idea that could potentially work better.
     
     \section{Formulation}
-    To simulate the real heterogeneous systems, we have to create a simulation stub, where you have some defined machines with their specifications and a list of jobs that need to be executed on such machines. We will work with \emph{Global Static} scheduling scheme and the goal is to assign the jobs to the machines at each time step to maximize overall performance. Although resource utilization isn't our main concern, we may include it in our objective.
+    To simulate the real heterogeneous systems, we have to create a simulation stub, where you have some defined machines with their specifications and a list of jobs that need to be executed on such machines. We will work with \emph{Global Static} scheduling scheme and the goal is to assign the jobs to the machines at each time step to maximize overall performance. 
+    
+    Although resources \footnote{the other resources of machine other than CPUs.} utilization isn't our main concern, we may include it in our objective.
     
     \section{Methodology}
-    
-    \subsection{Baseline}
-    First, let's discuss the baseline that all other experiments will be compare with. \emph{Heterogeneous Earliest Finish Time (HEFT)} will be considered as our baseline. \emph{(HEFT)} is an old well-established algorithm for scheduling in heterogeneous systems. Basically, the algorithm schedules a job on a machine based on job requirements with its earliest finish time. Although it's very simple, it's used as a comparison baseline for most of the research work made on this problem.  
-    
-    \subsection{Genetic Algorithms}
-    Our first attempt with recursive optimization for scheduling will be genetic algorithms. Genetic algorithms have proven to be very efficient in solving some of the hardest optimization problem. Previous work has been done in using genetic algorithms to solve scheduling problems. We will attempt using genetic algorithms to solve our proposed problem. The targeted \emph{fitness function} will be the average waiting time for all jobs. 
 
-    \subsection{Reinforcement Learning}
-    Another possible solution is \emph{Reinforcement Learning (RL)}, which is one on the most dominant fields in optimization and decision making problems. The main advantage of \emph{RL} is that it can act in a very dynamic environment, so it can adapt to priority changes and deadlocks, for instance. Moreover, we can add extra layers of complexity to our problem, such as: adding a status to each machine which can change with time or machine-specific task which needs to be executed on a specific machine. However, this comes at a cost of complicated and unstable environment. \\
-    If RL is to be used, one can consider using \emph{Q-Learning} to learn a scheduling policy using an environment of some machines. 
+    \subsection{Baseline}
+    We will consider \emph{Heterogeneous Earliest Finish Time} (HEFT) as our baseline and will compare its performance against our work.
+    
+    HEFT is an old and well-established algorithm for scheduling in heterogeneous systems. Most research work compares their results with it because of its near-optimality. Basically, it chooses some process to run on some machine if the former has the earliest finish time, with considering the special nature of the heterogeneous system. HEFT isn't practical for real-world systems, as no-one can know in advance the finish time of a process.
 
     \subsection{Neural Networks (Deep Learning)}
-    The main novel idea of this work will be the usage of \emph{neural networks} for the scheduling problem. \emph{Neural Networks} are known to be very good at learning representations and function approximation. In this work, we propose an architecture that can be used to reach a good approximated solution for the scheduling problem.\\
-    Previous work tried to use \emph{neural networks} to solve scheduling problem through \emph{Hopfield Nets} and \emph{Inhibitor Neurons}. However, we will try to make use of the recent advances in \emph{Deep Learning} to redefine the scheduling problem and solve it.
+    The main novel idea of this work will be the usage of \emph{neural networks} for the scheduling problem. Neural Networks are known to be very good at learning representations and function approximation. In this work, we propose an architecture that can be used to reach a good approximated solution for the scheduling problem.
+    
+    Previous work tried to use neural networks to solve scheduling problem through \emph{Hopfield Nets} and \emph{Inhibitor Neurons}. However, we will try to make use of the recent advances in \emph{Deep Learning} to redefine the scheduling problem and solve it.
+    
+    \subsection{Genetic Algorithms}
+    We will use genetic algorithms as a recursive optimization to solve our problem. The targeted \emph{fitness function} will be the average waiting time for all jobs. 
+    
+    Genetic algorithms have proven to be very efficient in solving some of the hardest optimization problem. Few similar research projects have been conducts in using genetic algorithms. We hope we can produce better results if the simulation and the algorithm were both well-tuned.
+
+    \subsection{Reinforcement Learning}
+    Another possible solution is \emph{Reinforcement Learning} (RL), which is one of the most dominant fields in optimization and decision making problems. 
+    
+    The main advantage of RL is that it can act in a very dynamic environment, so it can adapt, for instance, to priority changes and deadlocks. Moreover, we can add extra layers of complexity to our problem, such as: adding a status to each machine which can change with time or machine-specific tasks. However, this comes at a cost of complicated and unstable environment.
+
+    If RL is to be used, one can consider using \emph{Q-Learning} to learn a scheduling policy using an environment of some machines. 
     
     \subsubsection{Architecture}
-    Our architecture consists of two encoders and one decoder, as shown in Fig.\ref{fig:nn}. \\
-    The first encoder is a simple feedforward fully connected network, to which is machines specifications are passed. This encoder learns a representation for the machines to be able to use it later in producing the outputs. \\
-    The second encoder is an \emph{Recurrent Neural Network (RNN)}, to which the jobs are passed one by one ordered by the arrival time. This network learns a representation of the jobs preserving the arrival order. \\
+    Our architecture consists of two encoders and one decoder, as shown in Fig.\ref{fig:nn}.
+
+    The first encoder is a simple feedforward fully connected network, to which is machines specifications are passed. This encoder learns a representation for the machines to be able to use it later in producing the outputs. 
+    
+    The second encoder is an \emph{Recurrent Neural Network (RNN)}, to which the jobs are passed one by one ordered by the arrival time. This network learns a representation of the jobs preserving the arrival order. 
+    
     The representation of the jobs is later passed to an RNN decoder, which produces \emph{N} timesteps, at each step the processes currently running on each machine. The output is supported by attention modules to be able to take the machines representation into account when distributing the jobs.
     
     \begin{figure}[hp]
         \centering
         \includegraphics[width=0.45\textwidth]{sched_nn}
-        \caption{The architecture of the proposed neural network for Heterogeneous systems scheduling}
+        \caption{The architecture of the proposed neural network for Heterogeneous systems scheduling.}
         \label{fig:nn}
     \end{figure}
     
     \subsubsection{Objective Function}
-    The cost function defined for this problem will be a simple \emph{mean square error (MSE)} between the output \emph{(processes/machine)} and some optimally solved examples.
+    The cost function defined for this problem will be a simple \emph{mean square error} (MSE) between the output \emph{(processes/machine)} and some optimally solved examples.
     
     \subsubsection{Downsides}
     The main downside of the proposed solution is that we have to know the maximum number of machines and the maximum number of jobs to be able to define the network. However, the network scheduling inference can be faster than many algorithms. 
@@ -100,7 +112,4 @@
         \item Paper goal: To improve the usage of neural networks in scheduling.
         \item Conclusion: Neural networks can be a good candidate for scheduling.
     \end{itemize} 
-
 \end{document}
-
-
