@@ -88,7 +88,7 @@ class SchedNN(nn.Module):
             max_jobs(int): maximum number of jobs.
             rnn_hid_dim(int): number of hidden units in the RNN layers.
             machine_dim(int): number of data features for each machine [num_cores, core_freq, mem_cap].
-            job_dim(int): number of data features for each job [arrival_time, burst_time, mem_util, deadline].
+            job_dim(int): number of data features for each job [arrival_time, avg_burst_time, mem_util, priority].
         """
         super(SchedNN, self).__init__()
 
