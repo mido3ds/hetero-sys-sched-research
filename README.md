@@ -1,3 +1,3 @@
 # Heterogeneous Systems Scheduling Research   
 
-The master branch contains the main paper content, development branch contains the code for all experiments and reports branch contains all reports submitted at different phases.
+This repository contains the development and textual content of our proposed paper for optimizing scheduling algorithms for heterogeneous systems.

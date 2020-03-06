@@ -1,0 +1,12 @@
+{
+    "num_processes": 10,
+    "arrival": {
+        "mean": 9.5,
+        "spread": 2.4
+    },
+    "burst": {
+        "mean": 12,
+        "spread": 6.3
+    },
+    "memory_poisson_lambda": 3
+}

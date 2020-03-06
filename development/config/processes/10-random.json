@@ -1,0 +1,62 @@
+[
+    {
+        "proc_num": 1,
+        "arriv_time": 10.561027600052622,
+        "burst_time": 3.2248673472185434,
+        "memory": 4
+    },
+    {
+        "proc_num": 2,
+        "arriv_time": 9.713394999834993,
+        "burst_time": 3.6090838407487063,
+        "memory": 2
+    },
+    {
+        "proc_num": 3,
+        "arriv_time": 11.00341684346634,
+        "burst_time": 15.04359910997604,
+        "memory": 3
+    },
+    {
+        "proc_num": 4,
+        "arriv_time": 9.566112029537448,
+        "burst_time": 17.089326307387154,
+        "memory": 1
+    },
+    {
+        "proc_num": 5,
+        "arriv_time": 10.638516112986748,
+        "burst_time": 16.694645311519515,
+        "memory": 1
+    },
+    {
+        "proc_num": 6,
+        "arriv_time": 10.959581800029454,
+        "burst_time": 16.288672286380265,
+        "memory": 3
+    },
+    {
+        "proc_num": 7,
+        "arriv_time": 9.498869832808465,
+        "burst_time": 17.00789860849222,
+        "memory": 2
+    },
+    {
+        "proc_num": 8,
+        "arriv_time": 8.860056872729913,
+        "burst_time": 10.559090993414536,
+        "memory": 2
+    },
+    {
+        "proc_num": 9,
+        "arriv_time": 8.865164863231149,
+        "burst_time": 1.1174133354752165,
+        "memory": 2
+    },
+    {
+        "proc_num": 10,
+        "arriv_time": 7.9714602827089305,
+        "burst_time": 14.027759698300018,
+        "memory": 1
+    }
+]
