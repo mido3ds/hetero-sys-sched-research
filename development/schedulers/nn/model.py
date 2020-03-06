@@ -111,9 +111,11 @@ class SchedNN(nn.Module):
             Returns:
             Tensor: n timesteps with scheduled jobs for each machine.
         """    
-        machine_features = self.job_enc(machine_input)
+        job_input = torch.transpose(job_input, 1, 0)
 
-        job_features = self.job_enc(job_input)
+        machine_features = self.machine_enc(machine_input)
+
+        _, job_features = self.job_enc(job_input)
 
         feature_fusion = torch.stack([machine_features, job_features], dim=1)
 
