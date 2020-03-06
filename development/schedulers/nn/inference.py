@@ -38,8 +38,8 @@ def main(args=None):
         X_job = X_job.to(device)
         out_machine, out_time = model(X_machine, X_job)
         print("Saving output #{} ...".format(step))
-        np.save("data/outputs/{}_machines.npy".format(step), out_machine)
-        np.save("data/outputs/{}_times.npy".format(step), out_time)
+        np.save("data/outputs/{}_machines.npy".format(step), out_machine.cpu().detach().numpy())
+        np.save("data/outputs/{}_times.npy".format(step), out_time.cpu().detach().numpy())
 
 if __name__ == '__main__':
     main()
