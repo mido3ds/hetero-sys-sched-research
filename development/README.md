@@ -11,19 +11,21 @@ Job Scheduling in Heterogeneous Systems (HeDCS) are divided into two main catego
 
 ### Paper Goal
 
-Global - Static - Non-Physically Distributed - Heuristic - SubOptimal scheduling policy for better performance (resource utilization comparison to be done).
+Recursive approximation of static/local scheduling policies of heterogeneous systems (HeDCS).
 
 ### Baseline
 
-The proposed methods are to be compared to Heterogeneous Earliest Finish Time (HEFT) algorithm, which is a well-established widely-used algorithm for HeDCS scheduling.
+The proposed methods are to be compared to Heterogeneous Earliest Finish Time (HEFT) algorithm, which is a well-established widely-used algorithm for HeDCS scheduling. It's a static local scheduling algorithm, where inputs are DAG of the jobs to be scheduled, set of machines, the running time of each job on each machine and the time of communicating the results to the children jobs.
 
 ### Experiments 
 
-1) Genetic Algorithms.
+##### Neural Networks
 
-2) Neural Networks: __See the proposed network__.
+The main contribution of the paper. The proposed network approximates the scheduling algorithms much faster. It takes as an input the machines specs and the jobs specs and generates for each job: a machine to run on, the actual start time and the actual finish time. We have included an implementation to the proposed architecture in this repo.
 
-3) Reinforcement Learning: Q-learning [OPTIONAL].
+##### Genetic Algorithms
 
-The best performing method is to be proposed mainly in the paper and compared to the others.
+Another method for recursive approximation. The input to such algorithm is a DAG of the jobs to be scheduled, set of machines and the running time of each job on each machine. It's an online optimization process, so it takes a lot more time than trained neural networks. 
 
+##### Reinforcement Learning [OPTIONAL]
+Q-Learning.
