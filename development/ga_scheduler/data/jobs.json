@@ -1,0 +1,9 @@
+{
+    "tasks": [{"id": 0, "length": 20, "priority": 1, "depend": []}],
+
+    "constraints": {
+        "processors": 1,
+        "generations": 10,
+        "total_time": 40
+    }
+}
