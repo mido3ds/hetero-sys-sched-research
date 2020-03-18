@@ -2,7 +2,7 @@
 \usepackage[verbose,expansion=alltext,stretch=50]{microtype}
 \usepackage{graphicx}
 
-\title{Optimizing Scheduling Policies For Heterogeneous Distributed Systems}
+\title{DeepSched: A Deep Representation Of Scheduling Policies For Heterogeneous Distributed Systems}
 
 \author{
    \begin{tabular}{c| c| c| c}
@@ -16,24 +16,45 @@
 \markboth{Cairo Uni. CMP Dep. $|$ OS Research $|$ Final Paper $|$ \today}{Shell}
 
 \begin{document}
-    \maketitle
+\maketitle
 
-    \begin{abstract}
-        
-    \end{abstract}
+\begin{abstract}
+To be conducted, once the results are complete.  
+\end{abstract}
 
-    \section{Introduction}
- 
-    \section{Related Work}
-    
-    \section{Methodology}
-    
-    \section{Experimental Setup}
-    
-    \section{Discussion and Results}
-    
-    \section{Conclusion}
-    
-    \section{References}
+\section{Introduction}
+
+\IEEEPARstart{T}{he} continuous evolution of computing power and growth of widely-distributed applications and \emph{Internet of Things} (IoT) have driven our needs for better resource allocation methods. 
+The performance of any system critically depends on the algorithms used to schedule tasks on its resources. 
+The general objective is to get the best possible performance with the reasonable resource utilization. Recently, the heterogeneity of the computational systems are increasing, due to the nature of the applications. \\
+A \emph{heterogeneous system}\cite{venkat2014harnessing} can be defined as a range of resources, different in underlying architecture. The usage of a heterogeneous system has proven to be very efficient in increasing the system performance and reducing the overall power consumption. 
+However, this comes with the problem of complex task scheduling. The task scheduling problem for a heterogeneous computing system is more complex than that for a homogeneous system because of the different execution rates of processors and different communication rates among different processors. 
+The parameters of such problem make it very suitable for various optimization techniques. Previous work has investigated the usage of techniques such as genetic algorithms\cite{article2} to solve the task scheduling problem. \\
+In this paper, we investigate the ability of \emph{neural networks} to learn a representation of static local task scheduling problem. The recent advances in \emph{Deep Learning} research is used to build our scheduling system. 
+\emph{Heterogeneous Earliest Time First} (HEFT)\cite{993206} is used as a target, where the network learns to approximate its performance. Also, we include a genetic algorithm experiment for the same problem for comparison. We will discuss our approach to the problem and its limitations.
+
+\section{Related Work}
+
+Since task scheduling in heterogeneous systems is a wide problem, a lot of research has been conducted in this area. Various techniques have been introduced for the problem. 
+\emph{Heterogeneous Earliest Time First} (HEFT)\cite{993206} is one of the most well-established algorithms for task scheduling in heterogeneous systems. 
+It's a local static scheduling algorithms, which deals with a \emph{Direct Acyclic Graph} (DAG) of jobs displaying the dependencies between different processes. Each job has a running time for each different machine and a time for communicating the results to children jobs. 
+A wide range of algorithms\cite{inbook} follows HEFT further improving the scheduling performance. \\
+Recent research has been conducted to use optimization algorithms and predictive models to schedule tasks on heterogeneous system, since these algorithms have proven to be very efficient in solving complex computational problems. 
+\emph{Genetic algorithms}\cite{article2} can be used to efficiently schedule tasks in different systems. Also, \emph{Reinforcement Learning} (RL)\cite{ORHEAN2018292} has been a strong candidate for the problem, as the scheduling problem can be formulated as an \emph{RL} problem, solved by various \emph{RL} techniques. 
+Some papers also investigated the usage of \emph{Artificial Neural Networks} (ANN)\cite{article3} in task scheduling in heterogeneous systems. \\ 
+In this paper, we make use of recent advances in \emph{Deep Learning} and build a deep representation of the scheduling problem using \emph{Recurrent Neural Networks}(RNNs)\cite{chung2014empirical} and other techniques.
+
+\section{Methodology}
+
+\section{Experimental Setup}
+
+\section{Discussion and Results}
+
+\section{Conclusion}
+
+\medskip
+
+\bibliographystyle{unsrt}
+\bibliography{paper}
     
 \end{document}
