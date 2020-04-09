@@ -19,9 +19,9 @@ HEFT \cite{993206} is an old and well-established algorithm for scheduling in he
 \subsubsection{Genetic Algorithms}
 Genetic algorithms \cite{article2} have proven to be very efficient in solving some of the hardest optimization problem. Previous work on the use of genetic algorithms in task scheduling \cite{article2} is adapted to the heterogeneous setting by adding parameters for execution time of different tasks on different machines.
 
-The targeted \emph{fitness function} will be the average waiting time $W_t$ for all tasks. The fitness function for a specific schedule \emph{S} is given by:
+The targeted \emph{fitness function} is the average waiting time $W_t$ for all tasks. The fitness function for a specific schedule \emph{S} is given by:
 \begin{equation}
-\mathcal Fitness(S) = \frac{\sum_{i=1}^{N} W_{ti}}{N}
+\mathcal Fitness(S) = \frac{\sum_{i=1}^{N} W_{ti}}{N} \label{eq:ga}
 \end{equation}
 
 \subsection{Neural Networks (Deep Learning)}
@@ -30,6 +30,13 @@ The main novel idea of this work is the use of \emph{neural networks} for the sc
 Previous work tried to use neural networks to solve scheduling problem through \emph{Hopfield Nets} \cite{sathasivam2008logic} and \emph{Inhibitor Neurons} \cite{article3}. However, we try to make use of the recent advances in \emph{Deep Learning} to redefine the scheduling problem and solve it. 
 
 As mentioned, The provided input is a list of tasks with its information and a set of machines. We want the network to learn an implicit representation of the given tasks and machines. Then, the network learn the mapping between the learned representation and the desired schedule. In other words, the target of the network is to take two input list of information of both tasks and machines and then output for each task, the machine to be executed on, the actual start time and the actual finish time. \\
+
+\begin{figure}[hp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
+    \caption{The architecture of the proposed neural network (DeepSched) for distributed heterogeneous systems scheduling.}
+    \label{fig:nn}
+\end{figure}
     
 \subsubsection{Architecture}
 Our architecture consists of two encoders and one decoder, as shown in Fig.\ref{fig:nn}. \\
@@ -38,18 +45,11 @@ The first encoder is a fully convolutional network of \emph{1D} convolutional la
 The second encoder is an \emph{Recurrent Neural Network} (RNN) \cite{chung2014empirical}, to which the tasks are passed one by one ordered by the arrival time. This network learns a representation of the tasks preserving the arrival order. RNN is chosen due to its proven effectiveness in dealing with sequential data, as they can learn complex temporal information from time sequences.
 
 The two representations are then stacked and passed to two modules. A classification module which states the machine on which a specific task is executed. A regression module that identifies the actual start time and the actual finish time. Mainly, the two modules consist of \emph{1D} convolutional layers.
-
-\begin{figure}[hp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
-    \caption{The architecture of the proposed neural network for distributed heterogeneous systems scheduling}
-    \label{fig:nn}
-\end{figure}
     
 \subsubsection{Objective Function}
 The cost function defined for this architecture is a sum of two criteria. Categorical cross entropy \emph{(CE)} on the predicted machine to run a specific job $M_p$ and mean square error \emph{(MSE)} on the predicted actual start time $AST_p$ and the predicted actual finish time $AFT_p$. So it can be summarized as follows:
 \begin{equation}
-\mathcal Loss(L) = CE(M_p, M_t) + MSE(AT_p, AT_t)
+\mathcal Loss(L) = CE(M_p, M_t) + MSE(AT_p, AT_t) \label{eq:l}
 \end{equation}
 where $M_p$ is the predicted machine, $M_t$ is the ground truth machine, $AT_p$ is the predicted actual time range and $AT_t$ is the ground truth actual time range. \\
 
