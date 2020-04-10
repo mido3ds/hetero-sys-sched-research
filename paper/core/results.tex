@@ -1,0 +1,27 @@
+\subsection{Scheduling Performance}
+
+\begin{figure}[hp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{diagrams/ta_chart}
+    \caption{Average turnaround time produced from the three discussed schedulers at different input sizes.}
+    \label{fig:ta_chart}
+\end{figure}
+
+\subsection{Execution Time}
+
+\begin{table}
+  \caption{Time comparison between the three discussed schedulers at different input sizes. Time measured in seconds.}
+  \label{tab:exec_time}
+  \centering
+  \begin{tabular}{l l l l}
+    \toprule
+    Input Size & HEFT & GA & NN \\
+    \midrule
+    486	& 31.5 & 67.5 & 0.125 \\
+    10000 & 305.5 & 602.5 & 0.125 \\
+    84654 & 670.0 & 3967.0 & 0.125 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Results Discussion}

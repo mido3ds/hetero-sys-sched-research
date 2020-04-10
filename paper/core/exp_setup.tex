@@ -43,7 +43,7 @@ The target of this module is to predict the actual start time and the actual fin
 \subsection{Training}
 The network is trained on HEFT scheduling outputs. Cross-entropy is used as a classification loss and mean squared error (MSE) is used as a regression loss. The summation of the two losses \ref{eq:l} is used to train the network using gradient descent with \emph{Adam} optimizer and a learning rate of $1e$-$5$. The network is trained for $100$ epochs. The task encoder only takes input of maximum number of tasks, so inputs of lower dimension are zero-padded along the length dimension to the maximum number ($84654$ tasks). \\
 
-The training takes around $1.5$ hours on \emph{Nvidia GTX} $1070$ and around $15$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance. \\
+The training takes around $35$ minutes on \emph{Nvidia GTX} $1070$ and around $12$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance. \\
 
 The proposed network is implemented in \emph{Python} using \emph{PyTorch} framework \cite{paszke2019pytorch}.  Our source code is publicly available at \link{https://github.com/DarkGeekMS/deepsched}.
 
