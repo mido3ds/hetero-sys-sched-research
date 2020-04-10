@@ -2,10 +2,12 @@ from data_loader.dataloader import SchedDataset
 from model import SchedNN
 import torch.nn as nn
 from torch.utils.data import DataLoader
+from timeit import default_timer
 import numpy as np
 import argparse
 import torch
 import math
+import os
 
 def main(args=None):
     parser = argparse.ArgumentParser(description=__doc__)
@@ -17,6 +19,9 @@ def main(args=None):
     parser.add_argument('--batch_size', help='Batch size.', type=int, default=8)
 
     args = parser.parse_args(args)
+
+    if (os.path.isdir("data/outputs/")):
+        os.mkdir("data/outputs/")
     
     device = "cuda:0" if torch.cuda.is_available else "cpu"
 
@@ -31,6 +36,9 @@ def main(args=None):
     steps_num = int(math.ceil(len(dataset)/ args.batch_size))
 
     print("The model contains: {} parameters".format(sum(p.numel() for p in model.parameters())))
+    print("Inference on {} samples".format(len(dataset)))
+
+    start_time = default_timer()
 
     for step in range(steps_num):
         X_machine, X_job, Y_machine, Y_time = next(data_iterator)
@@ -40,6 +48,8 @@ def main(args=None):
         print("Saving output #{} ...".format(step))
         np.save("data/outputs/{}_machines.npy".format(step), out_machine.cpu().detach().numpy())
         np.save("data/outputs/{}_times.npy".format(step), out_time.cpu().detach().numpy())
+    
+    print("Inference finished in {}".format(default_timer()-start_time))    
 
 if __name__ == '__main__':
     main()

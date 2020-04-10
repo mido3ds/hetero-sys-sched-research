@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 import argparse
 import torch
 import math
+import os
 
 def main(args=None):
     parser = argparse.ArgumentParser(description=__doc__)
@@ -22,6 +23,9 @@ def main(args=None):
     parser.add_argument('--job_dim', help='Number of features per job.', type=int, default=4)
 
     args = parser.parse_args(args)
+
+    if (os.path.isdir("checkpoints/")):
+        os.mkdir("checkpoints/")
     
     device = "cuda:0" if torch.cuda.is_available else "cpu"
 
