@@ -16,10 +16,10 @@ HEFT, which is a heuristic method, is used as a comparison baseline and also to 
 The basic architecture from the original paper \cite{993206} is used in a framework with the proposed neural network shown in Fig.\ref{fig:fw}. HEFT receives some data from a defined database of tasks and resources and produces the output schedule, which is used as labels for the network training data. This way the network can approximate the performance of the HEFT scheduling algorithm by learning to map the input tasks and resources to the schedule produced by HEFT on a large database. \\
 
 \subsubsection{Genetic Algorithms}
-The methodology from \cite{article2} is used to develop a genetic algorithm solution for heterogeneous systems. Extra parameters are added to the population to represent the different resources. Also, the execution time is expanded to be a value for each job running on a specific machine, instead of only one execution time value. The used fitness function is the average waiting time \ref{eq:ga}. Random initialization is used along with Crossover. The results of this method are compared to the output of the proposed network.
+The methodology from \cite{article2} is used to develop a genetic algorithm solution for heterogeneous systems. Extra parameters are added to the population to represent the different resources. Also, the execution time is expanded to be a value for each task running on a specific machine, instead of only one execution time value. The used fitness function is the average waiting time \ref{eq:ga}. Random initialization is used along with Crossover. The results of this method are compared to the output of the proposed network.
 
 \subsection{Datasets}
-A database of tasks and resources is adapted from \emph{Dataset for Task scheduling in Cloud using CLoudsim} \cite{px5b-b729-20}. The used database consists of $100000$ samples represented as a list of tasks requires to be scheduled. Each sample contains from $486$ to $84654$ tasks, arranged as a \emph{directed acyclic graph} (DAG) to represent the task dependencies and each task has an execution time for each specific processor. Also, the database contains $188$ resource instances (processors), on which the given tasks scheduled. The desired output of such data is to determine, for each task, the optimal processor to run on, the actual start time (AST) and the actual finish time (AFT). 
+A database of tasks and resources is adapted from \emph{Dataset for Task scheduling in Cloud using CLoudsim} \cite{px5b-b729-20}. The used database consists of $100000$ samples represented as a list of tasks requires to be scheduled. Each sample contains from $486$ to $84654$ tasks, arranged as a \emph{directed acyclic graph} (DAG) to represent the task dependencies and each task has an execution time for each specific processor. Also, the database contains $188$ resource instances (processors), on which the given tasks scheduled. The desired output of such data is to determine, for each task, the optimal processor to run on, the actual start time (AST) and the actual finish time (AFT). \\
 
 The provided samples are divided into $90000$ samples for training and validation and $10000$  samples for testing. We maintain diversity in the test data by including different number of tasks in the test samples.
 
@@ -41,7 +41,15 @@ The target of this module is to select the optimal running processor for each ta
 The target of this module is to predict the actual start time and the actual finish time of each task on the scheduled processor. The input to this module is the stacked information of both resources and tasks. It consists of a single \emph{Conv1D} layer, which is used to regress the actual start and finish times for each task. 
 
 \subsection{Training}
-The network is trained on HEFT scheduling outputs. Cross-entropy is used as a classification loss and mean squared error (MSE) is used as a regression loss. The summation of the two losses \ref{eq:l} is used to train the network using gradient descent with \emph{Adam} optimizer and a learning rate of $1e$-$5$. The network is trained for $100$ epochs. The training takes around $1.5$ hours on \emph{Nvidia GTX} $1070$ and around $13$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance.
+The network is trained on HEFT scheduling outputs. Cross-entropy is used as a classification loss and mean squared error (MSE) is used as a regression loss. The summation of the two losses \ref{eq:l} is used to train the network using gradient descent with \emph{Adam} optimizer and a learning rate of $1e$-$5$. The network is trained for $100$ epochs. The task encoder only takes input of maximum number of tasks, so inputs of lower dimension are zero-padded along the length dimension to the maximum number ($84654$ tasks). \\
+
+The training takes around $1.5$ hours on \emph{Nvidia GTX} $1070$ and around $15$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance.
 
 \subsection{Inference}
-Inference is performed on the trained network using both seen and unseen data, in order to compare with both HEFT and genetic algorithms, based on time and performance.
+Inference is performed on the trained network using both train and test data. We use the same $188$ resources information for all tests, however the input list of tasks is zero-padded to the maximum number of tasks, exactly like training.
+
+\subsection{Evaluation}
+The evaluation of our proposed method is conducted through running inference on both seen and unseen data of different lengths. These results of the network are compared to the output of HEFT and GA methods in the same scenarios. 
+
+This is done by passing the schedule produced by the three methods through a simple simulation that runs the proposed schedule and calculates the average turnaround time of all tasks. Evaluation is also conducted on the execution time of each scheduling method, as the speed of the scheduling algorithm is one of our main targets.
+
