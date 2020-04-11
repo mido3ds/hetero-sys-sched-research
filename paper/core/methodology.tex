@@ -1,3 +1,17 @@
+\begin{figure}[hp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
+    \caption{The architecture of the proposed neural network (DeepSched) for distributed heterogeneous systems scheduling.}
+    \label{fig:nn}
+\end{figure}
+
+\begin{figure}[hp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{diagrams/framework}
+    \caption{The training framework of DeepSched network. A database of tasks and resources is provided for both network and HEFT. The loss of the network is measured based on HEFT produced schedule.}
+    \label{fig:fw}
+\end{figure}
+
 \subsection{Motivation}
 Heterogeneous task scheduling is a relatively new concept, which lacks developers support. It's an active area of research, where many techniques are being developed through time. Being able to achieve the best possible performance on the given tasks, while keeping good utilization of resources is a tedious problem in heterogeneous systems. Aside from being accurate, the scheduling methods have to be fast in its execution, also they should not consume the system resources. 
 
@@ -30,13 +44,6 @@ The main novel idea of this work is the use of \emph{neural networks} for the sc
 Previous work tried to use neural networks to solve scheduling problem through \emph{Hopfield Nets} \cite{sathasivam2008logic} and \emph{Inhibitor Neurons} \cite{article3}. However, we try to make use of the recent advances in \emph{Deep Learning} to redefine the scheduling problem and solve it. 
 
 As mentioned, The provided input is a list of tasks with its information and a set of machines. We want the network to learn an implicit representation of the given tasks and machines. Then, the network learn the mapping between the learned representation and the desired schedule. In other words, the target of the network is to take two input list of information of both tasks and machines and then output for each task, the machine to be executed on, the actual start time and the actual finish time. \\
-
-\begin{figure}[hp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
-    \caption{The architecture of the proposed neural network (DeepSched) for distributed heterogeneous systems scheduling.}
-    \label{fig:nn}
-\end{figure}
     
 \subsubsection{Architecture}
 Our architecture consists of two encoders and one decoder, as shown in Fig.\ref{fig:nn}. \\
