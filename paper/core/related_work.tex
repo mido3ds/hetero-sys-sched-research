@@ -1,21 +1,26 @@
 Since task scheduling in heterogeneous systems is a wide problem, a lot of research has been conducted in this area. Various techniques have been introduced for the problem. These techniques are categorized based on multiple aspects \cite{inbook} and some of which are adapted from task scheduling methods for homogeneous systems.
 
 \subsection{Scheduling Categories}
-In this work, we focus on three basic categorization of heterogeneous task scheduling methods.
+In this work, we focus on three basic categorizations of heterogeneous task scheduling methods. \\
 
 \subsubsection{Application-Specific vs. System-Specific}
-Heterogeneous scheduling methods can be divided into two main categories based on their target metric.\\
+Heterogeneous scheduling methods can be divided into two main categories based on their target metric.
+
 \emph{Application-Specific} scheduling targets task execution speed (performance), where scheduling
-decisions are determined based on many parameters including application performance, task inter-dependency and the availability of resources. \emph{System-Specific} targets resource utilization, where scheduling decisions are based on the percentage of time a resource is available or busy.
+decisions are determined based on many parameters including application performance, task inter-dependency and the availability of resources. \emph{System-Specific} scheduling targets resource utilization, where scheduling decisions are based on the percentage of time a resource is available or busy. \\
 
 \subsubsection{Global vs. Local}
-Also, heterogeneous scheduling methods can be divided into global and local scheduling. \emph{Global} scheduling can migrate the tasks from one processor to another, meanwhile \emph{local} scheduling can't migrate, so once a task is assigned to a processor, it stays in its queue.  
+Also, heterogeneous scheduling methods can be divided into global and local scheduling.
+
+\emph{Global} scheduling can migrate the tasks from one processor to another, meanwhile \emph{local} scheduling can't migrate, so once a task is assigned to a processor, it stays in its queue.  \\
 
 \subsubsection{Static vs. Dynamic}
-Finally, heterogeneous scheduling methods can be divided into static and dynamic scheduling. In \emph{static} scheduling, the tasks required to be scheduled are defined before scheduling. However, in \emph{dynamic} scheduling, new tasks can be introduced during the scheduling process
+Finally, heterogeneous scheduling methods can be divided into static and dynamic scheduling. 
+
+In \emph{static} scheduling, the tasks required to be scheduled are defined before scheduling. However, in \emph{dynamic} scheduling, new tasks can be introduced during the scheduling process
 
 \subsection{Heterogeneous Earliest Time First (HEFT)}
-HEFT \cite{993206} is one of the most well-established algorithms for task scheduling in heterogeneous systems. It's a local static scheduling algorithms, which deals with a \emph{Direct Acyclic Graph} (DAG) of tasks displaying the dependencies between different processes. Each task has a running time for each different machine and a time for communicating the results to children tasks. A wide range of algorithms \cite{inbook} follows HEFT further improving the scheduling performance.
+HEFT \cite{993206} is one of the most well-established algorithms for task scheduling in heterogeneous systems. It's a local static scheduling algorithms, which deals with a \emph{Direct Acyclic Graph} (DAG) of tasks displaying the dependencies between different processes. Each task has a running time for each different machine and a time for communicating the results to children tasks. HEFT is essentially a greedy algorithm, so it's unable make short-term sacrifices for long term benefits. Consequently, HEFT can fail in complex situations. A wide range of algorithms \cite{inbook} follows HEFT further improving the scheduling performance.
 
 \subsection{Optimization Algorithms}
 Recent research has been conducted to use optimization algorithms and predictive models to schedule tasks on heterogeneous system, since these algorithms have proven to be very efficient in solving complex computational problems. 
@@ -25,6 +30,8 @@ GA \cite{article2} can be used to efficiently schedule tasks in different system
 Also, RL \cite{ORHEAN2018292} has been a strong candidate for the problem, as the scheduling problem can be formulated as an \emph{RL} problem, solved by various \emph{RL} techniques. RL techniques are effective in solving progressive decision making problems, so they are more likely to be used in dynamic scheduling.
 
 \subsection{Neural Networks}
-Recent advances in \emph{Deep Learning} have enabled neural networks to dominate many fields, such as computer vision, natural language processing and others. Neural networks are able to perform perception tasks at a human-level accuracy. Also, neural networks are very efficient in function approximation and representation learning. These properties make neural networks a perfect choice for massive scale automation of many tasks. Some studies even investigated the usage of \emph{Artificial Neural Networks} (ANN)\cite{article3} in task scheduling in heterogeneous systems. Most of these studies focus on the usage of \emph{Hopfield Nets} \cite{sathasivam2008logic} and \emph{Inhibitor Neurons} \cite{article3}. \\
+Recent advances in \emph{Deep Learning} have enabled neural networks to dominate many fields, such as computer vision, natural language processing, robotics and others. Neural networks are able to perform perception tasks at a human-level accuracy. Also, neural networks are very efficient in function approximation and representation learning. These properties make neural networks a perfect choice for massive scale automation of many tasks. Some studies even investigated the usage of \emph{Artificial Neural Networks} (ANNs) \cite{article3} in task scheduling in heterogeneous systems. Most of these studies focus on the usage of \emph{Hopfield Nets} \cite{sathasivam2008logic} and \emph{Inhibitor Neurons} \cite{article3}. \\
 
-In this paper, we make use of recent advances in \emph{Deep Learning} and build a deep representation of the scheduling problem and use it to approximate the performance of heterogeneous scheduling methods. \emph{Recurrent Neural Networks}(RNNs) \cite{chung2014empirical} are used for this purpose, as they have the ability to learn complex temporal information from a time-series data, which is exactly our case. Other network operations to be used, too.
+However, recent advances in \emph{Deep Learning} have come up with new techniques of using neural networks in complex situations. One of the most shiny techniques are \emph{Recurrent Neural Networks} (RNNs) \cite{chung2014empirical}. RNNs have been widely used in many fields such as natural language processing \cite{bahdanau2014neural}, speech recognition \cite{DBLP:journals/corr/AmodeiABCCCCCCD15}, image captioning \cite{DBLP:journals/corr/abs-1810-04020}, time-series prediction \cite{prasad2014deep} and others. They have proven to be very efficient in learning complex temporal information from time-series data. That's why, they are used with sequential data such as videos, speech and text. This makes RNNs our main choice, as we are dealing with sequential data which is the tasks to be scheduled.\\
+
+In this paper, we make use of recent advances in \emph{Deep Learning} such as RNNs and other techniques to learn a deep representation of the scheduling problem and use it to approximate the performance of heterogeneous scheduling methods. 
