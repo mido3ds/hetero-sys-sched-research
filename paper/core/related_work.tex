@@ -17,7 +17,7 @@ Also, heterogeneous scheduling methods can be divided into global and local sche
 \subsubsection{Static vs. Dynamic}
 Finally, heterogeneous scheduling methods can be divided into static and dynamic scheduling. 
 
-In \emph{static} scheduling, the tasks required to be scheduled are defined before scheduling. However, in \emph{dynamic} scheduling, new tasks can be introduced during the scheduling process
+In \emph{static} scheduling, the tasks required to be scheduled are defined before scheduling. However, in \emph{dynamic} scheduling, new tasks can be introduced during the scheduling process.
 
 \subsection{Heterogeneous Earliest Time First (HEFT)}
 HEFT \cite{993206} is one of the most well-established algorithms for task scheduling in heterogeneous systems. It's a local static scheduling algorithms, which deals with a \emph{Direct Acyclic Graph} (DAG) of tasks displaying the dependencies between different processes. Each task has a running time for each different machine and a time for communicating the results to children tasks. HEFT is essentially a greedy algorithm, so it's unable make short-term sacrifices for long term benefits. Consequently, HEFT can fail in complex situations. A wide range of algorithms \cite{inbook} follows HEFT further improving the scheduling performance.
