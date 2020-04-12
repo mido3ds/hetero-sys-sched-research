@@ -1,3 +1,5 @@
+\subsection{Conclusion}
+
 In this work, we propose a new approximation method of task scheduling algorithms in heterogeneous distributed system using neural networks. The proposed network is used to approximate HEFT scheduler in static scheduling scenarios. The network can perform as accurate as HEFT on seen data during training and sightly lower performance on unseen data. However, the network can maintain a constant execution time at different input sizes, while HEFT execution time increases rapidly. 
 
 These results show that neural network, which are great function approximators, have the potential to approximate different scheduling methods for heterogeneous distributed systems. They can learn good representation of the scheduling problem, while maintaining constant execution time in inference. 
@@ -5,3 +7,10 @@ These results show that neural network, which are great function approximators, 
 The main drawback of this method is that static scenarios must be provided. Maximum number to tasks to be scheduled and maximum number of resources must be known before training the network. However, the proposed network is relatively small and doesn't consume much time to train on low or mid-range \emph{GPUs}. \\
 
 In conclusion, It's a trade-off between constant time execution and dynamic systems, where good performance and constant execution time can be achieved in neural networks at static scenarios. This can be useful in some cases such as simulations on supercomputers, where the workflow is static and initially defined. Meanwhile, other solutions, such as RL solutions, can work well in a dynamic environment with no degradation with the complexity of the environment. This is important in IoT-based application, where the system is totally dynamic and can have different events.
+
+\subsection{Future Work}
+
+This work can be improved in two possible ways. \emph{First,} other heterogeneous task scheduling methods can be approximated using neural networks. As we mentioned, the proposed method can be expanded to approximate other scheduling methods as long as static scenarios provided. Neural networks can even approximate theoretical methods, that achieves optimal results, to a great extend. These methods aren't used in real life due to there time complexity. However, if these methods are approximated using neural networks, they can be deployed in real life applications. 
+
+\emph{Second,} Other possible approximation methods can be tried through neural networks in order to confront dynamic scenarios. Online optimization can be one solution, however online network optimization can be very computationally-expensive. Another possible solution is to use the proposed network as a function approximator in a \emph{Reinforcement Learning} (RL) environment, in order to be able to learn dynamically in case of new introduced tasks. 
+

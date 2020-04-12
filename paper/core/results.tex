@@ -32,7 +32,7 @@ The main advantage of using neural networks is constant inference time. Once the
 We can see that the network consumes constant time in inference with different input sizes. This is because the network is trained on the maximum input length. However, HEFT and genetic algorithms execution time increases with input size. GA time increases more rapidly than HEFT, as it's a recursive optimization method but HEFT is a greedy-based method.
 
 \subsection{Results Discussion}
-The previous results show that neural networks can approximate a scheduling algorithm for heterogeneous distributed systems, resulting in a significantly-good performance and fast execution. The proposed network can perform well, even on unseen data it can produce efficient schedules.
+The previous results show that neural networks can approximate a scheduling algorithm for heterogeneous distributed systems, resulting in a significantly good performance and fast execution. The proposed network can perform well, even on unseen data it can produce efficient schedules.
 
 However, this comes with a drawback of static scenarios. The neural network is trained with fixed input size, which is the maximum number of tasks, in our case. At inference time, the input to the network can't exceed that number. So, we have to define the maximum number of tasks to be scheduled, as well as the maximum number of resources. Moreover, the scheduling scenario for the proposed network should be static, where all available tasks should be known before the scheduler starts. 
 
