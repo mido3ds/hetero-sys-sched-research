@@ -58,6 +58,6 @@ The proposed network is implemented in \emph{Python} using \emph{PyTorch} framew
 Inference is performed on the trained network using both train and test data. We use the same $188$ resources information for all tests, however the input list of tasks is zero-padded to the maximum number of tasks, exactly like training.
 
 \subsection{Evaluation}
-The evaluation of our proposed method is conducted through running inference on both seen and unseen data of different lengths. These results of the network are compared to the output of HEFT and GA methods in the same scenarios. 
+Fig.\ref{fig:efw} shows our evaluation framework of the network. The evaluation of our proposed method is conducted through running inference on both seen and unseen data of different lengths. These results of the network are compared to the output of HEFT and GA methods in the same scenarios. 
 
 This is done by passing the schedule produced by the three methods through a simple simulation that runs the proposed schedule and calculates the average turnaround time of all tasks. Evaluation is also conducted on the execution time of each scheduling method, as the speed of the scheduling algorithm is one of our main targets.
