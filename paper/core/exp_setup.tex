@@ -14,7 +14,7 @@
 
 Our evaluation methodology of the proposed network is based on comparison with two basic method. One of them is a heuristic method, which is \emph{Heterogeneous Earliest Time First} (HEFT) and the other is an approximate method, which is \emph{Genetic Algorithms} (GA). \\
 
-The results are compared based on the execution time, as well as scheduling performance. For execution time, we measure the total time consumed by scheduling different number of tasks. For scheduling performance, we measure the total turnaround time for all scheduled tasks. Our network is supposed to achieve better execution time with similar performance to HEFT on previously seen data and slightly lower performance on unseen data. 
+The results are compared based on the execution time, as well as scheduling performance. For execution time, we measure the total time consumed by scheduling different number of tasks. For scheduling performance, we measure the average turnaround time for all scheduled tasks. Our network is supposed to achieve better execution time with similar performance to HEFT on previously seen data and slightly lower performance on unseen data. 
 
 \subsection{Baseline}
 HEFT, which is a heuristic method, is used as a comparison baseline and also to generate the training data, where the network approximates HEFT performance. GA solution, which is an approximate method, is only used as a comparison baseline. \\
@@ -34,7 +34,7 @@ The provided samples are divided into $90000$ samples for training and validatio
 Our proposed network consists of four main modules.
 
 \subsubsection{Machine Encoder}
-This module takes resource details as an input and learns a meaningful representation of them. It consists of one \emph{Conv1D} layer to extract the basic features of each processor, followed by one \emph{fully connected} layer to learn a compact representation of all processors, in order to be passed to the output modules. The common input features for each processor passed to this module are number of processor cores, core frequency and memory capacity. \\
+This module takes resource details as an input and learns a meaningful representation of them. It consists of one \emph{Conv1D} \footnote{Convolution operation performed along one dimension only, usually used for regression.} layer to extract the basic features of each processor, followed by one \emph{fully connected} layer to learn a compact representation of all processors, in order to be passed to the output modules. The common input features for each processor passed to this module are number of processor cores, core frequency and memory capacity. \\
 
 \subsubsection{Task Encoder}
 This module takes the time sequence of tasks required to be scheduled and learns a meaningful representation of them through time. \emph{Recurrent neural networks} are used to learn the desired temporal information of the tasks. The module consists of a single \emph{bidirectional gated recurrent unit} (GRU) \cite{chung2014empirical} layer to extract temporal features of each task, followed by one \emph{fully connected} layer to learn a compact representation of all tasks, in order to be passed to the output modules. The common input features for each task passed to this module are arrival time, burst (execution) time for each processor, task priority and memory utilization. \\
@@ -48,16 +48,16 @@ The target of this module is to select the optimal running processor for each ta
 The target of this module is to predict the actual start time and the actual finish time of each task on the scheduled processor. The input to this module is the stacked information of both resources and tasks. It consists of a single \emph{Conv1D} layer, which is used to regress the actual start and finish times for each task. 
 
 \subsection{Training}
-The network is trained on HEFT scheduling outputs. Cross-entropy is used as a classification loss and mean squared error (MSE) is used as a regression loss. The summation of the two losses \ref{eq:l} is used to train the network using gradient descent with \emph{Adam} optimizer and a learning rate of $1e$-$5$. The network is trained for $100$ epochs. The task encoder only takes input of maximum number of tasks, so inputs of lower dimension are zero-padded along the length dimension to the maximum number ($84654$ tasks). \\
+The network is trained on HEFT scheduling outputs. Cross-entropy is used as a classification loss and mean squared error (MSE) is used as a regression loss. The summation of the two losses \ref{eq:l} is used to train the network using gradient descent with \emph{Adam} optimizer and a learning rate of $1e$-$5$ with decay factor of $0.5$ every 20 epochs. The network is trained for $100$ epochs. The task encoder only takes input of maximum number of tasks, so inputs of lower dimension are zero-padded along the length dimension to the maximum number ($84654$ tasks). \\
 
-The training takes around $35$ minutes on \emph{Nvidia GTX} $1070$ and around $12$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance. \\
+The training takes around $35$ minutes on \emph{Nvidia GTX} $1070$ and around $10$ hours on \emph{Nvidia GTX} $840m$, which is a relatively small time based on both \emph{GPUs} performance. \\
 
 The proposed network is implemented in \emph{Python} using \emph{PyTorch} framework \cite{paszke2019pytorch}.  Our source code is publicly available at \link{https://github.com/DarkGeekMS/deepsched}.
 
 \subsection{Inference}
-Inference is performed on the trained network using both train and test data. We use the same $188$ resources information for all tests, however the input list of tasks is zero-padded to the maximum number of tasks, exactly like training.
+Inference is performed on the trained network using both train and test data. We use some of the train data, in order to test the ability of the network on previously seen data against HEFT. We use the same $188$ resources information for all tests, however the input list of tasks is zero-padded to the maximum number of tasks, exactly like training.
 
 \subsection{Evaluation}
 Fig.\ref{fig:efw} shows our evaluation framework of the network. The evaluation of our proposed method is conducted through running inference on both seen and unseen data of different lengths. These results of the network are compared to the output of HEFT and GA methods in the same scenarios. 
 
-This is done by passing the schedule produced by the three methods through a simple simulation that runs the proposed schedule and calculates the average turnaround time of all tasks. Evaluation is also conducted on the execution time of each scheduling method, as the speed of the scheduling algorithm is one of our main targets.
+This is done by passing the schedule produced by the three methods through a simple simulation that runs the proposed schedule and calculates the average turnaround time of all tasks. Evaluation is also conducted on the execution time of each scheduling method, as the speed of the scheduling algorithm is one of our main concerns.
