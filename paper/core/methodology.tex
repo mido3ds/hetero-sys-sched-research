@@ -1,16 +1,16 @@
-\begin{figure}[hp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
-    \caption{The architecture of the proposed neural network (DeepSched) for distributed heterogeneous systems scheduling.}
-    \label{fig:nn}
-\end{figure}
-
 \subsection{Motivation}
 Heterogeneous task scheduling is a relatively new concept, which lacks developers support. It's an active area of research, where many techniques are being developed through time. Being able to achieve the best possible performance on the given tasks, while keeping good utilization of resources is a tedious problem in heterogeneous systems. Aside from being accurate, the scheduling methods have to be fast in its execution, also they should not consume the system resources. 
 
 Heterogeneous scheduling methods are very computationally expensive. However, neural networks are relatively fast in inference and research is being conducted on optimizing inference even more. So, if a neural network can approximate the performance of current scheduling method, it can replace this method in production. 
 
 We study the ability of neural networks to approximate some heuristic methods and explore its accuracy and execution time against both heuristic and approximated methods.
+
+\begin{figure}[hp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{diagrams/sched_nn}
+    \caption{The architecture of the proposed neural network (DeepSched) for distributed heterogeneous systems scheduling.}
+    \label{fig:nn}
+\end{figure}
 
 \subsection{Formulation}
 First, let us specify the main target of this work. As the task scheduling in heterogeneous distributed system is a vast field with lots of settings and algorithms \cite{inbook}, we choose our scheduling setting to be local and static. The goal of this work is to explore the ability of neural networks to approximate the performance of some well-established scheduling algorithms. In our setting, the algorithms are provided a list of tasks, each has its own execution time on different machines and a set of heterogeneous machines, on which the tasks are executed. We compare the results neural networks to some other heuristic and approximate methods.

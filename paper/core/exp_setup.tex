@@ -5,16 +5,16 @@
     \label{fig:fw}
 \end{figure}
 
+Our evaluation methodology of the proposed network is based on comparison with two basic method. One of them is a heuristic method, which is \emph{Heterogeneous Earliest Time First} (HEFT) and the other is an approximate method, which is \emph{Genetic Algorithms} (GA). \\
+
+The results are compared based on the execution time, as well as scheduling performance. For execution time, we measure the total time consumed by scheduling different number of tasks. For scheduling performance, we measure the average turnaround time for all scheduled tasks. Our network is supposed to achieve better execution time with similar performance to HEFT on previously seen data and slightly lower performance on unseen data. 
+
 \begin{figure}[hp]
     \centering
     \includegraphics[width=0.45\textwidth]{diagrams/eval_framework}
     \caption{The evaluation framework of DeepSched network. A database of tasks and resources is provided to all three schedulers. The output schedules are passed to a simulation stub, which runs the schedules and calculates average turnaround time.}
     \label{fig:efw}
 \end{figure}
-
-Our evaluation methodology of the proposed network is based on comparison with two basic method. One of them is a heuristic method, which is \emph{Heterogeneous Earliest Time First} (HEFT) and the other is an approximate method, which is \emph{Genetic Algorithms} (GA). \\
-
-The results are compared based on the execution time, as well as scheduling performance. For execution time, we measure the total time consumed by scheduling different number of tasks. For scheduling performance, we measure the average turnaround time for all scheduled tasks. Our network is supposed to achieve better execution time with similar performance to HEFT on previously seen data and slightly lower performance on unseen data. 
 
 \subsection{Baseline}
 HEFT, which is a heuristic method, is used as a comparison baseline and also to generate the training data, where the network approximates HEFT performance. GA solution, which is an approximate method, is only used as a comparison baseline. \\
